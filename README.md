@@ -13,4 +13,4 @@ PHP Script Sederhana Untuk Membuat Telegram Bot RSS Feed
 4. Edit Bagian $rss dengan memasukan alamat url rss blog anda
 5. Selesai
 
-# Jalankan BOT dengan perintah : "php bot.php
+# Jalankan BOT dengan perintah : "php bot.php"
