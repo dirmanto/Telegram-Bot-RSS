@@ -1,7 +1,7 @@
 # telegram-bot-rss-blog - digunakan di https://telegram.me/dirmantowebid
 PHP Script Sederhana Untuk Membuat Telegram Bot RSS Feed
 
-# Perlu di Siapkan
+# Perlu disiapkan
 - Akun VPS yang sudah terinstall php versi mulai dari 5.*
 - Akun Telegram Bot (bisa dibuat melalui @BotFather pada Telegram)
 - Waktu :)
