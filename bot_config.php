@@ -5,12 +5,12 @@
 **********************************
 */
 /* Token API Telegram. Silahkan Ambil Dari @BotFather */ 
-$token = '344428677:AAGiu_nIJLENQ1LdHKt0TVdL_ccyjiYDNJo';
+$token = 'token bot anda disini';
 
 /* Isi Dengan Grup ID */
-$chat = '-1001228509159'; 
+$chat = 'id grup anda disini'; 
 /* Sumber RSS Feed */
-$rss = 'https://feeds.feedburner.com/kangdirmanto';
+$rss = 'url rss feed blog anda disini';
 
 /* Log Disimpan */
 $log_file = 'channel_bot.log';
