@@ -13,7 +13,7 @@ $last_send_title = "";
 
 /* Fungsi */
 $time = date_default_timezone_set("ASIA/Jakarta");
-$log_text = "[$time] Bot avviato. URL Feed: $rss".PHP_EOL;
+$log_text = "[$time] Bot RSS Blog. URL Feed: $rss".PHP_EOL;
 file_put_contents($log_file, $log_text, FILE_APPEND | LOCK_EX);
 echo $log_text;
 /* FUngsi Kontrol */
