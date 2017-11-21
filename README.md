@@ -1,5 +1,7 @@
-# telegram-bot-rss-blog - Homebase: https://t.me/dirmantowebid
-PHP Script Sederhana Untuk Membuat Telegram Bot RSS Feed
+# telegram-bot-rss-blog
+Homebase: https://t.me/dirmantowebid
+
+# PHP Script Sederhana Untuk Membuat Telegram Bot RSS Feed
 
 # Perlu disiapkan
 - Akun VPS yang sudah terinstall php versi mulai dari 5.*
