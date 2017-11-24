@@ -1,8 +1,8 @@
 <?php 
 /* 
-*****************************************************
-* Bot Telegram - https://telegram.me/dirmantowebid **
-*****************************************************
+************************************************************
+* RSS Feed Reader Bot - https://telegram.me/dirmantowebid **
+************************************************************
 */
 require_once('bot_config.php');
 /* Variabel Yang Digunakan Pada bot_config.php */
@@ -16,13 +16,13 @@ $time = date_default_timezone_set("ASIA/Jakarta");
 $log_text = "[$time] Bot RSS Blog. URL Feed: $rss".PHP_EOL;
 file_put_contents($log_file, $log_text, FILE_APPEND | LOCK_EX);
 echo $log_text;
-/* FUngsi Kontrol */
+/* Fungsi Kontrol */
 $pid = getmypid();
 file_put_contents($pid_file, $pid);
 
 /* Fungsi Pesan */
 function telegram_send_chat_message($token, $chat, $messaggio) {
-	/* prelievo timestamp attuale per eventuale log dell'errore */
+	/* Jika Error */
 	$time = time();
 	/* URL Variabel */
 	$url = "https://api.telegram.org/bot$token/sendMessage?chat_id=$chat";
@@ -37,10 +37,10 @@ function telegram_send_chat_message($token, $chat, $messaggio) {
 	);
 	curl_setopt_array($ch, $optArray);
 	$result = curl_exec($ch);
-	/* In caso di errore, lo salvo nei log */
+	/* Simpan Error Log */
 	if ($result == FALSE) {
 		$time = date("m-d-y H:i", time());
-		$log_text = "[$time] Invio messaggio fallito: $messaggio".PHP_EOL;
+		$log_text = "[$time] Kirim Pesan Error: $messaggio".PHP_EOL;
 		file_put_contents($log_file, $log_text, FILE_APPEND | LOCK_EX);
 	}
 	curl_close($ch);
@@ -48,27 +48,27 @@ function telegram_send_chat_message($token, $chat, $messaggio) {
 
 /* Perputaran Waktu Pesan Terkirim */
 while (true) {
-	/* Se $last_send non Ã¨ stata parametizzata, significa che il bot Ã¨ appena partito. La imposto quindi uguale a $max_age_articoli, che Ã¨ il tempo attuale - 20 minuti. PubblicherÃ  quindi retroattivamente tutte le notizie piÃ¹ vecchie di 20 minuti*/
+	/* Se $last_send Bot Berjalan $max_age_articoli, Update informasi akan disampaikan dengan interval berita 20 menit terakhir*/
 	if ($last_send == false) $last_send = $max_age_articoli;
 	$ora_attuale = time();
 	$articoli = @simplexml_load_file($rss);
-	/* Se non Ã¨ riuscito a scaricare il feed, pubblico un messaggio di errore nel log */
+	/* Lihat Log jika ada pesan error */
 	if ($articoli === false) { 
 		$time = date("m-d-y H:i", $ora_attuale);
-		$log_text = "[$time] Il bot non Ã¨ riuscito a contattare il Feed RSS. Connessione fallita a $rss.".PHP_EOL;
+		$log_text = "[$time] Bot gagal menerima informasi feed $rss.".PHP_EOL;
 		file_put_contents($log_file, $log_text, FILE_APPEND | LOCK_EX);
-	/* Vado avanti solo se $articoli non Ã¨ in false, ciÃ² vuol dire che simplexml Ã¨ riuscito a caricare il feed e posso procedere a processare le notizie */	
+	/* Bot Melihat $articoli berita disampaikan */	
 	}else{
-		/* Inverto l'ordine delle notizie, da decrescente a crescente */
+		/* Menerima berita RSS */
 		$xmlArray = array();
 		foreach ($articoli->channel->item as $item) $xmlArray[] = $item;
 		$xmlArray = array_reverse($xmlArray);
 		
-		/* Inizio ciclo invio notizie */
+		/* Mulai putaran berita */
 		foreach ($xmlArray as $item) {
 			$timestamp_articolo = strtotime($item->pubDate);
-			/* Controllo se la notizia Ã¨ piÃ¹ recente dell'ultima pubblicata */
-			/* Anche se dovrebbe *non farlo* ma lo fa per ignoti motivi, ho aggiunto un controllo che dovrebbe evitare di far pubblicare due volte la stessa notizia */
+			/* Memeriksa Berita */
+			/* Jika berita yang sam diterima */
 			if ($timestamp_articolo > $last_send and $last_send_title != $item->title) {
 				$messaggio = ucfirst($item->category) . " - " . $item->title . PHP_EOL;
 				$messaggio .= $item->link . PHP_EOL;
