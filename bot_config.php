@@ -1,23 +1,27 @@
 <?php 
 /* 
-**********************************
-**** Variabili API Telegram ******
-**********************************
+*
+* Variabel API Telegram
+* Fungsi: Membaca RSS Sebuah Blog atau Website
+* Tutorial: https://wp.me/p5DRvJ-en
+* Telegram Grup: @dirmantowebid - https://t.me/dirmantowebid
+* Modifikasi Terakhir: Desember 2017
+*
 */
 /* Token API Telegram. Silahkan Ambil Dari @BotFather */ 
-$token = 'token bot anda disini';
+$token = 'TOKEN BOT';
 
 /* Isi Dengan Grup ID */
-$chat = 'id grup anda disini'; 
+$chat = 'ID Group Telegram'; 
 /* Sumber RSS Feed */
-$rss = 'url rss feed blog anda disini';
+$rss = 'https://feeds.feedburner.com/kangdirmanto';
 
 /* Log Disimpan */
-$log_file = 'channel_bot.log';
+$log_file = 'bot.log';
 
 /* Proses PID Bot */
 $pid_file = 'bot.pid';
 
 /* Timer Waktu */
-$attesa = 60;
+$wait = 120;
 ?>
