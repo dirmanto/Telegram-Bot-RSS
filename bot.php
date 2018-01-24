@@ -3,27 +3,44 @@
 *
 * Fungsi: Membaca RSS Sebuah Blog atau Website
 * Tutorial: https://wp.me/p5DRvJ-en
+* Versi PHP: 5. hingga 7. --dengan penyesuaian--
 * Telegram Grup: @dirmantowebid - https://t.me/dirmantowebid
-* Modifikasi Terakhir: Desember 2017
+* Modifikasi Terakhir: 24 Januari 2018
 *
 */
-require_once('bot_config.php');
-/* Variabel Yang Digunakan Pada bot_config.php */
+/* Token API Telegram. Dari @BotFather */ 
+$token = '';
+
+/* Isi Dengan Grup ID */
+$chat = '';
+/* Sumber RSS Feed */
+$rss = 'https://feeds.feedburner.com/kangdirmanto';
+
+/* Log Disimpan */
+$log_file = 'bot-rss.log';
+
+/* Proses PID Bot */
+$pid_file = 'bot-rss.pid';
+
+/* Timer Waktu */
+$wait = 120;
+
+/* Waktu */
 $max_age_articles = time() - 240;
-/* Parameter ini tidak digunakan max_age_articles */
+/* Parameter ini tidak digunakan, silahkan dikembangkan sendiri */
 $last_send = false;
 $last_send_title = "";
 
-/* Fungsi */
+/* Bot Berjalan */
 $time = date_default_timezone_set("ASIA/Jakarta");
 $log_text = "[$time] Berjalan... URL Feed: $rss".PHP_EOL;
 file_put_contents($log_file, $log_text, FILE_APPEND | LOCK_EX);
 echo $log_text;
-/* Fungsi Kontrol */
+/* Bot PID */
 $pid = getmypid();
 file_put_contents($pid_file, $pid);
 
-/* Fungsi Pesan */
+/* API Pesan */
 function telegram_send_chat_message($token, $chat, $message) {
 	/* Jika Error */
 	$time = time();
@@ -71,7 +88,7 @@ while (true) {
 		foreach ($xmlArray as $item) {
 			$timestamp_article = strtotime($item->pubDate);
 			/* Memeriksa Berita */
-			/* Jika berita yang sam diterima */
+			/* Jika ada Berita, Sampaikan.. */
 			if ($timestamp_article > $last_send and $last_send_title != $item->title) {
 				$message = ucfirst($item->category) . " - " . $item->title . PHP_EOL;
 				$message .= $item->link . PHP_EOL;
