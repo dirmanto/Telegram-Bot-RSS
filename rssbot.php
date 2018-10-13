@@ -4,17 +4,17 @@
 * Fungsi: Membaca RSS Sebuah Blog atau Website
 * Tutorial: https://wp.me/p5DRvJ-en
 * Versi PHP: 5. hingga 7. --dengan penyesuaian--
-* Telegram Grup: @dirmantowebid - https://t.me/dirmantowebid
-* Modifikasi Terakhir: 24 Januari 2018
+* Telegram Grup: Personal Blog Indonesia - https://t.me/personalblogid
+* Modifikasi Terakhir: 13 Oktober 2018
 *
 */
 /* Token API Telegram. Dari @BotFather */ 
-$token = '';
+$token = 'ABCDEFGHIJKLMNOPQRTSUVWXYZ:1234567890';
 
 /* Isi Dengan Grup ID */
-$chat = '';
+$chat = '-1234567890';
 /* Sumber RSS Feed */
-$rss = 'https://feeds.feedburner.com/kangdirmanto';
+$rss = 'https://feeds.feedburner.com/KangDirmantelegram';
 
 /* Log Disimpan */
 $log_file = 'bot-rss.log';
