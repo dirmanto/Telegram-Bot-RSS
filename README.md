@@ -1,5 +1,5 @@
 # telegram-bot-rss-blog
-Homebase: https://s.id/dirmanto
+Homebase: https://t.me/personalblogid
 
 # PHP Script Sederhana Untuk Membuat Telegram Bot RSS Feed
 
@@ -20,8 +20,5 @@ Homebase: https://s.id/dirmanto
 
 # KINERJA BOT
 Bot akan menyampaikan langsung link beserta deskripsi singkat serta gambar blog ketika anda melakukan posting terbaru.
-
-# DEMO BOT
-Telegram Grup : https://t.me/dirmantowebid
 
 <a rel="license" href="http://creativecommons.org/licenses/by/3.0/"><img alt="Lisensi Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by/3.0/88x31.png" /></a><br />Ciptaan disebarluaskan di bawah <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Lisensi Creative Commons Atribusi 3.0 Tanpa Adaptasi</a>.
