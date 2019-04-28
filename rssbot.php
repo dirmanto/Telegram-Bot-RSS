@@ -41,11 +41,11 @@ $pid = getmypid();
 file_put_contents($pid_file, $pid);
 
 /* API Pesan */
-function telegram_send_chat_message($token, $chat, $message) {
+function telegram_send_chat_message($token, $chat, $message, $reply_markup) {
 	/* Jika Error */
 	$time = time();
 	/* URL Variabel */
-	$url = "https://api.telegram.org/bot$token/sendMessage?chat_id=$chat";
+	$url = "https://api.telegram.org/bot$token/sendMessage?chat_id=$chat&reply_markup=$reply_markup";
 	/* Pesan Terkirim */
 	$send_text=urlencode($message);
 	$url = $url ."&text=$send_text";
@@ -92,7 +92,18 @@ while (true) {
 			if ($timestamp_article > $last_send and $last_send_title != $item->title) {
 				$message = ucfirst($item->category) . " - " . $item->title . PHP_EOL;
 				$message .= $item->link . PHP_EOL;
-				telegram_send_chat_message($token, $chat, $message);
+				$message = urlencode( $message );
+				$reply_markup = json_encode( array(
+					'inline_keyboard' => array(
+						array(
+							array(
+								'text' => '🔗 View Article',
+								'url'  => urlencode( $item->link ),
+							)
+						)
+					),
+				) );
+				telegram_send_chat_message($token, $chat, $message,$reply_markup);
 				$last_send = $timestamp_article;
 				$last_send_title = $item->title;
 			}
