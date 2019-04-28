@@ -5,7 +5,7 @@
 * Tutorial: https://wp.me/p5DRvJ-en
 * Versi PHP: 5. hingga 7. --dengan penyesuaian--
 * Telegram Grup: Personal Blog Indonesia - https://t.me/personalblogid
-* Modifikasi Terakhir: 13 Oktober 2018
+* Modifikasi Terakhir: 28 April 2019
 *
 */
 /* Token API Telegram. Dari @BotFather */ 
@@ -92,7 +92,6 @@ while (true) {
 			if ($timestamp_article > $last_send and $last_send_title != $item->title) {
 				$message = ucfirst($item->category) . " - " . $item->title . PHP_EOL;
 				$message .= $item->link . PHP_EOL;
-				$message = urlencode( $message );
 				$reply_markup = json_encode( array(
 					'inline_keyboard' => array(
 						array(
