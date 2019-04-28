@@ -1,11 +1,13 @@
 <?php 
 /* 
 *
-* Fungsi: Membaca RSS Sebuah Blog atau Website
+* Fungsi: Menyampaikan Posting Blog Baru ke Grup/Kanal Telegram
+* Sumber Update Post: RSS Feed
 * Tutorial: https://wp.me/p5DRvJ-en
 * Versi PHP: 5. hingga 7. --dengan penyesuaian--
-* Telegram Grup: Personal Blog Indonesia - https://t.me/personalblogid
+* Contoh Hasil: Personal Blog Indonesia - https://t.me/narablog
 * Modifikasi Terakhir: 28 April 2019
+* Thanks to: @manzoorwanijk
 *
 */
 /* Token API Telegram. Dari @BotFather */ 
@@ -14,7 +16,7 @@ $token = 'ABCDEFGHIJKLMNOPQRTSUVWXYZ:1234567890';
 /* Isi Dengan Grup ID */
 $chat = '-1234567890';
 /* Sumber RSS Feed */
-$rss = 'https://feeds.feedburner.com/KangDirmantelegram';
+$rss = 'https://feeds.feedburner.com/personalblogid';
 
 /* Log Disimpan */
 $log_file = 'bot-rss.log';
@@ -27,7 +29,7 @@ $wait = 120;
 
 /* Waktu */
 $max_age_articles = time() - 240;
-/* Parameter ini tidak digunakan, silahkan dikembangkan sendiri */
+/* Parameter ini tidak digunakan. */
 $last_send = false;
 $last_send_title = "";
 
@@ -102,7 +104,7 @@ while (true) {
 						)
 					),
 				) );
-				telegram_send_chat_message($token, $chat, $message,$reply_markup);
+				telegram_send_chat_message($token, $chat, $message, $reply_markup);
 				$last_send = $timestamp_article;
 				$last_send_title = $item->title;
 			}
