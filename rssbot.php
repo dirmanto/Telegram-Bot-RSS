@@ -97,7 +97,7 @@ while (true) {
 					'inline_keyboard' => array(
 						array(
 							array(
-								'text' => '🔗 View Article',
+								'text' => '🔗 Baca Aku',
 								'url'  => urlencode( $item->link ),
 							)
 						)
